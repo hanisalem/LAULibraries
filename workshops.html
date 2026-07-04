@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Policies - LAU Creative Space Lab</title>
+    <title>Workshops & Events - LAU Creative Space Lab</title>
 
     <!-- Fonts and Icons -->
     <link
@@ -27,7 +27,7 @@
         --bg-light: #f8f9fa;
         --bg-gray: #e9ecef;
         --white: #ffffff;
-        --shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        --shadow: 0 8px 24px rgba(0, 0, 0, 0.09);
         --transition: all 0.3s ease;
         --header-height: 72px;
       }
@@ -41,10 +41,6 @@
       html {
         -webkit-text-size-adjust: 100%;
         scroll-behavior: smooth;
-      }
-
-      section[id] {
-        scroll-margin-top: var(--header-height);
       }
 
       body {
@@ -257,7 +253,7 @@
         opacity: 1;
       }
 
-      /* Smaller hero */
+      /* Smaller hero image section */
       .cs-hero {
         margin-top: var(--header-height);
         min-height: 56vh;
@@ -268,6 +264,7 @@
           linear-gradient(rgba(0, 77, 53, 0.75), rgba(0, 0, 0, 0.65)),
           url("images/undefined - Imgur.jpg") center/cover no-repeat;
         position: relative;
+
         display: flex;
         align-items: center;
         justify-content: center;
@@ -356,65 +353,107 @@
       .cs-section-title {
         font-size: clamp(1.5rem, 3.5vw, 2rem);
         color: var(--primary-dark);
-        margin-bottom: 1rem;
+        margin-bottom: 1.5rem;
         font-family: "Playfair Display", serif;
       }
 
-      /* Original Accordion Style */
-      .cs-accordion details {
+      .cs-grid-workshops {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+        gap: 1.3rem;
+        margin-top: 1.2rem;
+      }
+
+      .cs-workshop-card {
         background: white;
-        border: 1px solid #e2e8f0;
-        border-radius: 12px;
-        margin-bottom: 1rem;
+        border-radius: 16px;
+        overflow: hidden;
+        box-shadow: var(--shadow);
         transition: var(--transition);
-      }
-
-      .cs-accordion details[open] {
-        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
-        border-color: var(--primary-light);
-      }
-
-      .cs-accordion summary {
-        padding: 1.2rem;
-        font-weight: 600;
-        cursor: pointer;
-        list-style: none;
         display: flex;
-        justify-content: space-between;
-        align-items: center;
-        color: var(--primary-dark);
+        flex-direction: column;
+        height: 100%;
       }
 
-      .cs-accordion summary::-webkit-details-marker {
-        display: none;
+      .cs-workshop-card:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 12px 28px rgba(0, 0, 0, 0.13);
       }
 
-      .cs-accordion summary::after {
-        content: "\f078";
-        font-family: "Font Awesome 6 Free";
-        transition: transform 0.3s;
+      .cs-workshop-img {
+        width: 100%;
+        aspect-ratio: 16 / 9;
+        background: #0a2f1f;
+        object-fit: contain;
+        padding: 0;
+      }
+
+      .cs-workshop-content {
+        padding: 1.2rem;
+        display: flex;
+        flex-direction: column;
+        flex: 1;
+      }
+
+      .cs-badge {
+        align-self: flex-start;
+        background: var(--primary-color);
+        color: white;
+        padding: 4px 11px;
+        border-radius: 50px;
+        font-size: 0.72rem;
+        font-weight: 600;
+        margin-bottom: 0.85rem;
+      }
+
+      .cs-workshop-content h3 {
+        font-size: 1rem;
+        margin-bottom: 0.45rem;
+        color: var(--text-dark);
+      }
+
+      .cs-workshop-content p {
+        color: var(--text-light);
+        font-size: 0.86rem;
+        margin-bottom: 1.2rem;
+        flex: 1;
+      }
+
+      .cs-btn {
+        display: inline-block;
+        padding: 0.65rem 1.4rem;
+        background: linear-gradient(
+          135deg,
+          var(--primary-color) 0%,
+          var(--primary-light) 100%
+        );
+        color: white;
+        text-decoration: none;
+        border-radius: 50px;
+        font-weight: 600;
+        font-size: 0.85rem;
+        transition: var(--transition);
+        border: none;
+        cursor: pointer;
+      }
+
+      .cs-btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 5px 15px rgba(0, 103, 81, 0.4);
+      }
+
+      .cs-btn-outline {
+        background: transparent;
+        border: 2px solid var(--primary-color);
         color: var(--primary-color);
+        box-shadow: none;
+        text-align: center;
+        display: block;
       }
 
-      .cs-accordion details[open] summary::after {
-        transform: rotate(180deg);
-      }
-
-      .cs-accordion .details-content {
-        padding: 0 1.2rem 1.2rem;
-        font-size: 0.95rem;
-        color: var(--text-light);
-        border-top: 1px solid #f1f5f9;
-        margin-top: 0.5rem;
-        padding-top: 1rem;
-      }
-
-      .details-content h4 {
-        color: var(--primary-dark);
-      }
-
-      .details-content ul {
-        color: var(--text-light);
+      .cs-btn-outline:hover {
+        background: var(--primary-color);
+        color: white;
       }
 
       /* Minimal Footer */
@@ -594,6 +633,12 @@
       }
 
       /* Responsive */
+      @media (max-width: 1024px) {
+        .cs-container {
+          max-width: 900px;
+        }
+      }
+
       @media (max-width: 900px) {
         nav {
           padding: 0.85rem 1.25rem;
@@ -700,31 +745,6 @@
         }
       }
 
-      @media (max-width: 700px) {
-        footer {
-          padding: 1.75rem 1.25rem 1.1rem;
-        }
-
-        .footer-minimal {
-          flex-direction: column;
-          gap: 1.2rem;
-        }
-
-        .footer-links {
-          justify-content: flex-start;
-          gap: 0.75rem 1rem;
-        }
-
-        .footer-contact {
-          flex-direction: column;
-          gap: 0.55rem;
-        }
-
-        .copyright {
-          text-align: left;
-        }
-      }
-
       @media (max-width: 480px) {
         .logo-text {
           display: none;
@@ -732,6 +752,15 @@
 
         .cs-hero {
           min-height: 48vh;
+        }
+
+        .footer-grid {
+          grid-template-columns: 1fr;
+          gap: 2rem;
+        }
+
+        .cs-grid-workshops {
+          grid-template-columns: 1fr;
         }
       }
     </style>
@@ -743,7 +772,7 @@
          ========================================== -->
     <header id="main-header">
       <nav>
-          <a href="../index.html" class="logo">
+  <a href="../index.html" class="logo">
           <img src="images/LAU Libraries Logo.png" alt="LAU Logo" />
           <span class="logo-text">Libraries</span>
         </a>
@@ -827,6 +856,9 @@
           is an open lab where students from every major explore technology
           through making.
         </p>
+        <!-- <div style="margin-top: 2rem">
+          <a href="workshops.html" class="cs-btn">Upcoming Workshops</a>
+        </div> -->
         <p style="margin-top: 20px; font-size: 0.85rem; opacity: 0.7">
           10th Floor, RNL Building • Beirut Campus
         </p>
@@ -841,254 +873,97 @@
       </div>
 
       <!-- ==========================================
-           LAB POLICIES
+           WORKSHOPS
            ========================================== -->
-      <section id="policies" class="cs-section cs-bg-light">
+      <section id="workshops" class="cs-section cs-bg-light">
         <div class="cs-container">
-          <h2 class="cs-section-title">Lab Policies</h2>
-          <p
-            style="
-              color: var(--text-light);
-              margin-bottom: 2rem;
-              font-size: 1.1rem;
-            "
-          >
-            Please review our guidelines to ensure a productive and safe
-            creative environment for everyone.
-          </p>
+          <h2 class="cs-section-title">Workshops & Events</h2>
 
-          <div class="cs-accordion">
-            <details id="staff-policies">
-              <summary>🎓 Faculty Guidelines</summary>
-              <div class="details-content">
-                <h4 style="margin-bottom: 0.5rem">General Guidelines</h4>
-                <ul style="margin-left: 1.5rem; margin-bottom: 1.5rem">
-                  <li>
-                    The Creative Space is dedicated to creative projects,
-                    research, and fabrication.
-                  </li>
-                  <li>
-                    Faculty walk-ins are welcome for individual creative work,
-                    prototyping, and exploration.
-                  </li>
-                  <li>
-                    Faculty use of equipment requires prior reservation;
-                    walk-ins may use the equipment only if no other reservation
-                    is scheduled.
-                  </li>
-                  <li>
-                    Students have priority in this space – thus, if a faculty
-                    and student walk-in at the same time, the student will have
-                    priority to use available equipment.
-                  </li>
-                  <li>
-                    Specialized equipment may require a brief orientation before
-                    independent use.
-                  </li>
-                  <li>
-                    Faculty should meet with the Creative Space Supervisor to
-                    log on to their visit upon arrival.
-                  </li>
-                  <li>No food; drinks allowed only in closed containers.</li>
-                </ul>
-
-                <h4 style="margin-bottom: 0.5rem">1. Reservation Procedure</h4>
-                <ul style="margin-left: 1.5rem; margin-bottom: 1.5rem">
-                  <li>
-                    Faculty may reserve: Equipment and/or computers for personal
-                    research or project work OR The entire space for workshops
-                    or class sessions.
-                  </li>
-                  <li>
-                    Reservations for the entire space must be made at least two
-                    weeks prior to the desired date.
-                  </li>
-                  <li>
-                    Contact the Creative Space supervisor to reserve the entire
-                    space.
-                  </li>
-                </ul>
-
-                <h4 style="margin-bottom: 0.5rem">2. General Conduct</h4>
-                <ul style="margin-left: 1.5rem; margin-bottom: 1.5rem">
-                  <li>Respect the space and other users.</li>
-                  <li>Clean your area before leaving.</li>
-                  <li>Return tools and chairs to their original place.</li>
-                  <li>Report issues immediately to the supervisor.</li>
-                  <li>
-                    Keep cables and materials organized to prevent tripping or
-                    damage.
-                  </li>
-                </ul>
-
-                <h4 style="margin-bottom: 0.5rem">3. 3D Printing Guidelines</h4>
-                <ul style="margin-left: 1.5rem; margin-bottom: 1.5rem">
-                  <li>All 3D print work requires booking prior to work.</li>
-                  <li>
-                    Individuals seeking to perform 3D printing must first pass
-                    through a training session with the Creative Space
-                    Supervisor.
-                  </li>
-                  <li>
-                    All 3D prints must be cleared through the Creative Space
-                    supervisor before printing begins.
-                  </li>
-                  <li>
-                    All materials must be purchased through the creative space
-                    or approved for use by the creative space supervisor.
-                  </li>
-                </ul>
-
-                <h4 style="margin-bottom: 0.5rem">4. 3D Scanning Guidelines</h4>
-                <ul style="margin-left: 1.5rem; margin-bottom: 1.5rem">
-                  <li>All 3d scanning requires prior booking.</li>
-                  <li>
-                    Individuals seeking to perform 3D scanning must first pass
-                    through a training session with the Creative Space
-                    Supervisor.
-                  </li>
-                </ul>
-
-                <h4 style="margin-bottom: 0.5rem">5. Workstations</h4>
-                <ul style="margin-left: 1.5rem; margin-bottom: 1.5rem">
-                  <li>
-                    Workstations require booking; advance booking is recommended
-                    but may also be done on arrival if there are free
-                    workstations.
-                  </li>
-                  <li>Use headphones for audio tasks.</li>
-                </ul>
-
-                <h4 style="margin-bottom: 0.5rem">
-                  6. Embroidery and Sewing Machine Guidelines
-                </h4>
-                <ul style="margin-left: 1.5rem; margin-bottom: 1.5rem">
-                  <li>
-                    All embroidery and/or sewing machine work requires prior to
-                    booking.
-                  </li>
-                  <li>
-                    Individuals seeking to use the embroidery and/or sewing
-                    machines must first pass through a training session with the
-                    Creative Space Supervisor.
-                  </li>
-                  <li>Long sleeves must be secure, rolled, or fitted.</li>
-                  <li>Keep hair tied back to prevent personal harm.</li>
-                  <li>Report broken or missing tools immediately.</li>
-                </ul>
+          <div class="cs-grid-workshops">
+            <div class="cs-workshop-card">
+              <img
+                src="images/Intro to 3D Printing.jpg"
+                alt="3D Printing Workshop"
+                class="cs-workshop-img"
+              />
+              <div class="cs-workshop-content">
+                <span class="cs-badge">Beginner</span>
+                <h3>Intro to 3D Printing</h3>
+                <p>Safety, slicing, and your first print in PLA.</p>
+                <a
+                  href="https://forms.office.com/r/tc4GVt8VXy?origin=lprLink"
+                  target="_blank"
+                  class="cs-btn cs-btn-outline"
+                  >Register</a
+                >
               </div>
-            </details>
+            </div>
 
-            <details id="student-policies">
-              <summary>🎓 Student Guidelines</summary>
-              <div class="details-content">
-                <p style="font-weight: 600; margin-bottom: 1rem">
-                  The Creative Space is not a space for general study – it is a
-                  space for active, creative pursuits!
+            <div class="cs-workshop-card">
+              <img
+                src="images/Intro to 3D Scanning.jpg"
+                alt="3D Scanning Workshop"
+                class="cs-workshop-img"
+              />
+              <div class="cs-workshop-content">
+                <span class="cs-badge">Beginner</span>
+                <h3>Intro to 3D Scanning</h3>
+                <p>
+                  Learn the basics of capturing physical objects into digital 3D
+                  models.
                 </p>
-
-                <h4 style="margin-bottom: 0.5rem">1. Not Allowed in the Lab</h4>
-                <ul style="margin-left: 1.5rem; margin-bottom: 1.5rem">
-                  <li>No studying or unrelated homework.</li>
-                  <li>No group study sessions.</li>
-                  <li>No sitting without purpose.</li>
-                  <li>No food.</li>
-                  <li>Drinks are allowed only in closed containers.</li>
-                </ul>
-
-                <h4 style="margin-bottom: 0.5rem">
-                  2. General, Creative Consultation
-                </h4>
-                <ul style="margin-left: 1.5rem; margin-bottom: 1.5rem">
-                  <li>
-                    Individuals are encouraged to book a creative consultation
-                    with the lab supervisor before booking time on any machine
-                    or beginning work in the space.
-                  </li>
-                </ul>
-
-                <h4 style="margin-bottom: 0.5rem">3. 3D Printing Guidelines</h4>
-                <ul style="margin-left: 1.5rem; margin-bottom: 1.5rem">
-                  <li>All 3D print work requires booking prior to work.</li>
-                  <li>
-                    Individuals seeking to perform 3D printing must first pass
-                    through a training session with the Creative Space
-                    Supervisor.
-                  </li>
-                  <li>
-                    All 3D prints must be cleared through the Creative Space
-                    supervisor before printing begins.
-                  </li>
-                  <li>
-                    All materials must be purchased through the creative space
-                    or approved for use by the creative space supervisor.
-                  </li>
-                </ul>
-
-                <h4 style="margin-bottom: 0.5rem">4. 3D Scanning Guidelines</h4>
-                <ul style="margin-left: 1.5rem; margin-bottom: 1.5rem">
-                  <li>All 3D scanning is required prior to booking.</li>
-                  <li>
-                    Individuals seeking to perform 3D scanning must first pass
-                    through a training session with the Creative Space
-                    Supervisor.
-                  </li>
-                </ul>
-
-                <h4 style="margin-bottom: 0.5rem">5. Workstations</h4>
-                <ul style="margin-left: 1.5rem; margin-bottom: 1.5rem">
-                  <li>
-                    Workstations require booking; advance booking is recommended
-                    but may also be done on arrival if there are free
-                    workstations.
-                  </li>
-                  <li>Use headphones for audio tasks.</li>
-                </ul>
-
-                <h4 style="margin-bottom: 0.5rem">
-                  6. Embroidery and Sewing Machine Guidelines
-                </h4>
-                <ul style="margin-left: 1.5rem; margin-bottom: 1.5rem">
-                  <li>
-                    All embroidery and/or sewing machine work requires booking
-                    prior to work.
-                  </li>
-                  <li>
-                    Individuals seeking to use the embroidery and/or sewing
-                    machines must first pass through a training session with the
-                    Creative Space Supervisor.
-                  </li>
-                  <li>Long sleeves must be secure, rolled, or fitted.</li>
-                  <li>Keep hair tied back to prevent personal harm.</li>
-                  <li>Report broken or missing tools immediately.</li>
-                </ul>
-
-                <h4 style="margin-bottom: 0.5rem">7. General Conduct</h4>
-                <ul style="margin-left: 1.5rem; margin-bottom: 1.5rem">
-                  <li>Respect the space and other users.</li>
-                  <li>Clean your area before leaving.</li>
-                  <li>Return tools and chairs to their original place.</li>
-                  <li>Report issues immediately to the supervisor.</li>
-                  <li>
-                    Keep cables and materials organized to prevent tripping or
-                    damage.
-                  </li>
-                </ul>
-
-                <h4 style="margin-bottom: 0.5rem">8. Walk-in Policy</h4>
-                <ul style="margin-left: 1.5rem; margin-bottom: 1.5rem">
-                  <li>
-                    Walk-ins are welcome but must be actively working on a
-                    creative endeavor.
-                  </li>
-                  <li>
-                    Walk-ins may use the equipment in the space provided there
-                    is no existing booking for the equipment, and they are
-                    trained in its use.
-                  </li>
-                </ul>
+                <a
+                  href="https://forms.office.com/r/tc4GVt8VXy?origin=lprLink"
+                  target="_blank"
+                  class="cs-btn cs-btn-outline"
+                  >Register</a
+                >
               </div>
-            </details>
+            </div>
+
+            <div class="cs-workshop-card">
+              <img
+                src="images/Intro to Prompt Engineering.jpg"
+                alt="Prompt Engineering"
+                class="cs-workshop-img"
+              />
+              <div class="cs-workshop-content">
+                <span class="cs-badge">All Levels</span>
+                <h3>Intro to Prompt Engineering</h3>
+                <p>
+                  Master prompt structures and weights to create powerful
+                  visuals.
+                </p>
+                <a
+                  href="https://forms.office.com/r/tc4GVt8VXy?origin=lprLink"
+                  target="_blank"
+                  class="cs-btn cs-btn-outline"
+                  >Register</a
+                >
+              </div>
+            </div>
+
+            <div class="cs-workshop-card">
+              <img
+                src="images/Laura Creative Lab.jpg"
+                alt="Laura Creative Lab Workshop"
+                class="cs-workshop-img"
+              />
+              <div class="cs-workshop-content">
+                <span class="cs-badge">All Levels</span>
+                <h3>Laura Creative Lab</h3>
+                <p>
+                  Seamlessly connect Vision, Image, Video, 3D, and Audio AI into
+                  fluid workflows.
+                </p>
+                <a
+                  href="https://forms.office.com/r/tc4GVt8VXy?origin=lprLink"
+                  target="_blank"
+                  class="cs-btn cs-btn-outline"
+                  >Register</a
+                >
+              </div>
+            </div>
           </div>
         </div>
       </section>
@@ -1189,40 +1064,6 @@
           }
         });
       });
-
-      function openPolicyFromHash() {
-        const hash = window.location.hash;
-
-        if (!hash) return;
-
-        const targetPolicy = document.querySelector(hash);
-
-        if (targetPolicy && targetPolicy.tagName.toLowerCase() === "details") {
-          document
-            .querySelectorAll(".cs-accordion details")
-            .forEach((details) => {
-              details.removeAttribute("open");
-            });
-
-          targetPolicy.setAttribute("open", "open");
-
-          setTimeout(() => {
-            const headerOffset = 95;
-            const targetPosition =
-              targetPolicy.getBoundingClientRect().top +
-              window.pageYOffset -
-              headerOffset;
-
-            window.scrollTo({
-              top: targetPosition,
-              behavior: "smooth",
-            });
-          }, 150);
-        }
-      }
-
-      window.addEventListener("load", openPolicyFromHash);
-      window.addEventListener("hashchange", openPolicyFromHash);
     </script>
   </body>
 </html>

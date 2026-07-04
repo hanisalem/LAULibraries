@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Policies - LAU Creative Space Lab</title>
+    <title>Contact Us - LAU Creative Space Lab</title>
 
     <!-- Fonts and Icons -->
     <link
@@ -27,7 +27,7 @@
         --bg-light: #f8f9fa;
         --bg-gray: #e9ecef;
         --white: #ffffff;
-        --shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        --shadow: 0 8px 24px rgba(0, 0, 0, 0.09);
         --transition: all 0.3s ease;
         --header-height: 72px;
       }
@@ -41,10 +41,6 @@
       html {
         -webkit-text-size-adjust: 100%;
         scroll-behavior: smooth;
-      }
-
-      section[id] {
-        scroll-margin-top: var(--header-height);
       }
 
       body {
@@ -257,7 +253,7 @@
         opacity: 1;
       }
 
-      /* Smaller hero */
+      /* Hero */
       .cs-hero {
         margin-top: var(--header-height);
         min-height: 56vh;
@@ -314,9 +310,15 @@
         }
       }
 
-      /* Page layout */
+      /* Page */
       .page-main {
         margin-top: 0;
+      }
+
+      .cs-container {
+        max-width: 1200px;
+        margin: 0 auto;
+        position: relative;
       }
 
       .back-home {
@@ -335,12 +337,6 @@
         text-decoration: underline;
       }
 
-      .cs-container {
-        max-width: 1200px;
-        margin: 0 auto;
-        position: relative;
-      }
-
       .cs-section {
         padding: clamp(2.5rem, 4vw, 3.2rem) 1.5rem;
       }
@@ -356,65 +352,119 @@
       .cs-section-title {
         font-size: clamp(1.5rem, 3.5vw, 2rem);
         color: var(--primary-dark);
-        margin-bottom: 1rem;
+        margin-bottom: 0.8rem;
         font-family: "Playfair Display", serif;
       }
 
-      /* Original Accordion Style */
-      .cs-accordion details {
+      .section-intro {
+        color: var(--text-light);
+        font-size: 0.96rem;
+        max-width: 760px;
+        margin-bottom: 1.5rem;
+      }
+
+      .contact-grid {
+        display: grid;
+        grid-template-columns: 1.2fr 0.8fr;
+        gap: 1.5rem;
+        align-items: stretch;
+      }
+
+      .contact-form-card {
         background: white;
-        border: 1px solid #e2e8f0;
-        border-radius: 12px;
-        margin-bottom: 1rem;
-        transition: var(--transition);
+        border-radius: 16px;
+        overflow: hidden;
+        box-shadow: var(--shadow);
+        border: 1px solid rgba(0, 103, 81, 0.08);
       }
 
-      .cs-accordion details[open] {
-        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
-        border-color: var(--primary-light);
+      .contact-form-card iframe {
+        width: 100%;
+        min-height: 560px;
+        display: block;
+        border: none;
       }
 
-      .cs-accordion summary {
-        padding: 1.2rem;
-        font-weight: 600;
-        cursor: pointer;
-        list-style: none;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
+      .contact-card {
+        background: white;
+        border-radius: 16px;
+        padding: 1.4rem;
+        box-shadow: var(--shadow);
+        border-top: 4px solid var(--primary-color);
+      }
+
+      .contact-card h3 {
         color: var(--primary-dark);
+        font-size: 1.05rem;
+        margin-bottom: 1rem;
+        display: flex;
+        align-items: center;
+        gap: 8px;
       }
 
-      .cs-accordion summary::-webkit-details-marker {
-        display: none;
+      .contact-image {
+        width: 100%;
+        aspect-ratio: 16 / 10;
+        border-radius: 14px;
+        overflow: hidden;
+        margin-bottom: 1rem;
       }
 
-      .cs-accordion summary::after {
-        content: "\f078";
-        font-family: "Font Awesome 6 Free";
-        transition: transform 0.3s;
+      .contact-image img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+
+      .contact-list {
+        display: grid;
+        gap: 0.85rem;
+      }
+
+      .contact-item {
+        display: flex;
+        align-items: flex-start;
+        gap: 0.8rem;
+        padding: 0.85rem;
+        border: 1px solid rgba(0, 103, 81, 0.08);
+        border-radius: 14px;
+        background: #fff;
+      }
+
+      .contact-icon {
+        width: 38px;
+        height: 38px;
+        border-radius: 12px;
+        background: rgba(0, 103, 81, 0.08);
+        color: var(--primary-color);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+      }
+
+      .contact-item strong {
+        display: block;
+        font-size: 0.92rem;
+        color: var(--text-dark);
+        margin-bottom: 0.15rem;
+      }
+
+      .contact-item span,
+      .contact-item a {
+        color: var(--text-light);
+        font-size: 0.88rem;
+        text-decoration: none;
+      }
+
+      .contact-item a:hover {
         color: var(--primary-color);
       }
 
-      .cs-accordion details[open] summary::after {
-        transform: rotate(180deg);
-      }
-
-      .cs-accordion .details-content {
-        padding: 0 1.2rem 1.2rem;
-        font-size: 0.95rem;
+      .contact-note {
         color: var(--text-light);
-        border-top: 1px solid #f1f5f9;
-        margin-top: 0.5rem;
-        padding-top: 1rem;
-      }
-
-      .details-content h4 {
-        color: var(--primary-dark);
-      }
-
-      .details-content ul {
-        color: var(--text-light);
+        font-size: 0.88rem;
+        margin-top: 1rem;
       }
 
       /* Minimal Footer */
@@ -594,6 +644,16 @@
       }
 
       /* Responsive */
+      @media (max-width: 1024px) {
+        .cs-container {
+          max-width: 900px;
+        }
+
+        .contact-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+
       @media (max-width: 900px) {
         nav {
           padding: 0.85rem 1.25rem;
@@ -733,6 +793,14 @@
         .cs-hero {
           min-height: 48vh;
         }
+
+        .contact-card {
+          padding: 1.15rem;
+        }
+
+        .contact-form-card iframe {
+          min-height: 620px;
+        }
       }
     </style>
   </head>
@@ -841,254 +909,82 @@
       </div>
 
       <!-- ==========================================
-           LAB POLICIES
+           CONTACT
            ========================================== -->
-      <section id="policies" class="cs-section cs-bg-light">
+      <section id="contact" class="cs-section cs-bg-light">
         <div class="cs-container">
-          <h2 class="cs-section-title">Lab Policies</h2>
-          <p
-            style="
-              color: var(--text-light);
-              margin-bottom: 2rem;
-              font-size: 1.1rem;
-            "
-          >
-            Please review our guidelines to ensure a productive and safe
-            creative environment for everyone.
+          <h2 class="cs-section-title">Contact Us</h2>
+          <p class="section-intro">
+            We’re on LAU’s Beirut campus in the RNL Building, 10th floor. Bring
+            your LAU ID at the entrance, and use the form below to contact the
+            Creative Space Lab team.
           </p>
 
-          <div class="cs-accordion">
-            <details id="staff-policies">
-              <summary>🎓 Faculty Guidelines</summary>
-              <div class="details-content">
-                <h4 style="margin-bottom: 0.5rem">General Guidelines</h4>
-                <ul style="margin-left: 1.5rem; margin-bottom: 1.5rem">
-                  <li>
-                    The Creative Space is dedicated to creative projects,
-                    research, and fabrication.
-                  </li>
-                  <li>
-                    Faculty walk-ins are welcome for individual creative work,
-                    prototyping, and exploration.
-                  </li>
-                  <li>
-                    Faculty use of equipment requires prior reservation;
-                    walk-ins may use the equipment only if no other reservation
-                    is scheduled.
-                  </li>
-                  <li>
-                    Students have priority in this space – thus, if a faculty
-                    and student walk-in at the same time, the student will have
-                    priority to use available equipment.
-                  </li>
-                  <li>
-                    Specialized equipment may require a brief orientation before
-                    independent use.
-                  </li>
-                  <li>
-                    Faculty should meet with the Creative Space Supervisor to
-                    log on to their visit upon arrival.
-                  </li>
-                  <li>No food; drinks allowed only in closed containers.</li>
-                </ul>
+          <div class="contact-grid">
+            <!-- Microsoft Form -->
+            <div class="contact-form-card">
+              <iframe
+                src="https://forms.office.com/Pages/ResponsePage.aspx?id=6Bqym-fEoUmryRmhVTakaXfDDlUs_JhDvURv3-JezkpUNlMwNUsxSFMwR1FSNEVGRjEwMjRJNUpRRi4u&embed=true"
+                frameborder="0"
+                marginwidth="0"
+                marginheight="0"
+                allowfullscreen
+                webkitallowfullscreen
+                mozallowfullscreen
+                msallowfullscreen
+              ></iframe>
+            </div>
 
-                <h4 style="margin-bottom: 0.5rem">1. Reservation Procedure</h4>
-                <ul style="margin-left: 1.5rem; margin-bottom: 1.5rem">
-                  <li>
-                    Faculty may reserve: Equipment and/or computers for personal
-                    research or project work OR The entire space for workshops
-                    or class sessions.
-                  </li>
-                  <li>
-                    Reservations for the entire space must be made at least two
-                    weeks prior to the desired date.
-                  </li>
-                  <li>
-                    Contact the Creative Space supervisor to reserve the entire
-                    space.
-                  </li>
-                </ul>
-
-                <h4 style="margin-bottom: 0.5rem">2. General Conduct</h4>
-                <ul style="margin-left: 1.5rem; margin-bottom: 1.5rem">
-                  <li>Respect the space and other users.</li>
-                  <li>Clean your area before leaving.</li>
-                  <li>Return tools and chairs to their original place.</li>
-                  <li>Report issues immediately to the supervisor.</li>
-                  <li>
-                    Keep cables and materials organized to prevent tripping or
-                    damage.
-                  </li>
-                </ul>
-
-                <h4 style="margin-bottom: 0.5rem">3. 3D Printing Guidelines</h4>
-                <ul style="margin-left: 1.5rem; margin-bottom: 1.5rem">
-                  <li>All 3D print work requires booking prior to work.</li>
-                  <li>
-                    Individuals seeking to perform 3D printing must first pass
-                    through a training session with the Creative Space
-                    Supervisor.
-                  </li>
-                  <li>
-                    All 3D prints must be cleared through the Creative Space
-                    supervisor before printing begins.
-                  </li>
-                  <li>
-                    All materials must be purchased through the creative space
-                    or approved for use by the creative space supervisor.
-                  </li>
-                </ul>
-
-                <h4 style="margin-bottom: 0.5rem">4. 3D Scanning Guidelines</h4>
-                <ul style="margin-left: 1.5rem; margin-bottom: 1.5rem">
-                  <li>All 3d scanning requires prior booking.</li>
-                  <li>
-                    Individuals seeking to perform 3D scanning must first pass
-                    through a training session with the Creative Space
-                    Supervisor.
-                  </li>
-                </ul>
-
-                <h4 style="margin-bottom: 0.5rem">5. Workstations</h4>
-                <ul style="margin-left: 1.5rem; margin-bottom: 1.5rem">
-                  <li>
-                    Workstations require booking; advance booking is recommended
-                    but may also be done on arrival if there are free
-                    workstations.
-                  </li>
-                  <li>Use headphones for audio tasks.</li>
-                </ul>
-
-                <h4 style="margin-bottom: 0.5rem">
-                  6. Embroidery and Sewing Machine Guidelines
-                </h4>
-                <ul style="margin-left: 1.5rem; margin-bottom: 1.5rem">
-                  <li>
-                    All embroidery and/or sewing machine work requires prior to
-                    booking.
-                  </li>
-                  <li>
-                    Individuals seeking to use the embroidery and/or sewing
-                    machines must first pass through a training session with the
-                    Creative Space Supervisor.
-                  </li>
-                  <li>Long sleeves must be secure, rolled, or fitted.</li>
-                  <li>Keep hair tied back to prevent personal harm.</li>
-                  <li>Report broken or missing tools immediately.</li>
-                </ul>
+            <!-- Contact Info -->
+            <div class="contact-card">
+              <div class="contact-image">
+                <img src="images/Visit & Contact Us.jpg" alt="LAU Campus" />
               </div>
-            </details>
 
-            <details id="student-policies">
-              <summary>🎓 Student Guidelines</summary>
-              <div class="details-content">
-                <p style="font-weight: 600; margin-bottom: 1rem">
-                  The Creative Space is not a space for general study – it is a
-                  space for active, creative pursuits!
-                </p>
+              <h3><i class="fas fa-location-dot"></i> Visit & Contact</h3>
 
-                <h4 style="margin-bottom: 0.5rem">1. Not Allowed in the Lab</h4>
-                <ul style="margin-left: 1.5rem; margin-bottom: 1.5rem">
-                  <li>No studying or unrelated homework.</li>
-                  <li>No group study sessions.</li>
-                  <li>No sitting without purpose.</li>
-                  <li>No food.</li>
-                  <li>Drinks are allowed only in closed containers.</li>
-                </ul>
+              <div class="contact-list">
+                <div class="contact-item">
+                  <div class="contact-icon">
+                    <i class="fas fa-map-marker-alt"></i>
+                  </div>
+                  <div>
+                    <strong>Location</strong>
+                    <span>RNL Building, 10th Floor, LAU Beirut</span>
+                  </div>
+                </div>
 
-                <h4 style="margin-bottom: 0.5rem">
-                  2. General, Creative Consultation
-                </h4>
-                <ul style="margin-left: 1.5rem; margin-bottom: 1.5rem">
-                  <li>
-                    Individuals are encouraged to book a creative consultation
-                    with the lab supervisor before booking time on any machine
-                    or beginning work in the space.
-                  </li>
-                </ul>
+                <div class="contact-item">
+                  <div class="contact-icon">
+                    <i class="fas fa-phone"></i>
+                  </div>
+                  <div>
+                    <strong>Phone</strong>
+                    <a href="tel:+9611786456ext1210">
+                      Ext. 1210 (Lab Supervisor)
+                    </a>
+                  </div>
+                </div>
 
-                <h4 style="margin-bottom: 0.5rem">3. 3D Printing Guidelines</h4>
-                <ul style="margin-left: 1.5rem; margin-bottom: 1.5rem">
-                  <li>All 3D print work requires booking prior to work.</li>
-                  <li>
-                    Individuals seeking to perform 3D printing must first pass
-                    through a training session with the Creative Space
-                    Supervisor.
-                  </li>
-                  <li>
-                    All 3D prints must be cleared through the Creative Space
-                    supervisor before printing begins.
-                  </li>
-                  <li>
-                    All materials must be purchased through the creative space
-                    or approved for use by the creative space supervisor.
-                  </li>
-                </ul>
-
-                <h4 style="margin-bottom: 0.5rem">4. 3D Scanning Guidelines</h4>
-                <ul style="margin-left: 1.5rem; margin-bottom: 1.5rem">
-                  <li>All 3D scanning is required prior to booking.</li>
-                  <li>
-                    Individuals seeking to perform 3D scanning must first pass
-                    through a training session with the Creative Space
-                    Supervisor.
-                  </li>
-                </ul>
-
-                <h4 style="margin-bottom: 0.5rem">5. Workstations</h4>
-                <ul style="margin-left: 1.5rem; margin-bottom: 1.5rem">
-                  <li>
-                    Workstations require booking; advance booking is recommended
-                    but may also be done on arrival if there are free
-                    workstations.
-                  </li>
-                  <li>Use headphones for audio tasks.</li>
-                </ul>
-
-                <h4 style="margin-bottom: 0.5rem">
-                  6. Embroidery and Sewing Machine Guidelines
-                </h4>
-                <ul style="margin-left: 1.5rem; margin-bottom: 1.5rem">
-                  <li>
-                    All embroidery and/or sewing machine work requires booking
-                    prior to work.
-                  </li>
-                  <li>
-                    Individuals seeking to use the embroidery and/or sewing
-                    machines must first pass through a training session with the
-                    Creative Space Supervisor.
-                  </li>
-                  <li>Long sleeves must be secure, rolled, or fitted.</li>
-                  <li>Keep hair tied back to prevent personal harm.</li>
-                  <li>Report broken or missing tools immediately.</li>
-                </ul>
-
-                <h4 style="margin-bottom: 0.5rem">7. General Conduct</h4>
-                <ul style="margin-left: 1.5rem; margin-bottom: 1.5rem">
-                  <li>Respect the space and other users.</li>
-                  <li>Clean your area before leaving.</li>
-                  <li>Return tools and chairs to their original place.</li>
-                  <li>Report issues immediately to the supervisor.</li>
-                  <li>
-                    Keep cables and materials organized to prevent tripping or
-                    damage.
-                  </li>
-                </ul>
-
-                <h4 style="margin-bottom: 0.5rem">8. Walk-in Policy</h4>
-                <ul style="margin-left: 1.5rem; margin-bottom: 1.5rem">
-                  <li>
-                    Walk-ins are welcome but must be actively working on a
-                    creative endeavor.
-                  </li>
-                  <li>
-                    Walk-ins may use the equipment in the space provided there
-                    is no existing booking for the equipment, and they are
-                    trained in its use.
-                  </li>
-                </ul>
+                <div class="contact-item">
+                  <div class="contact-icon">
+                    <i class="fas fa-envelope"></i>
+                  </div>
+                  <div>
+                    <strong>Email</strong>
+                    <a href="mailto:creativespace@lau.edu.lb">
+                      creativespace@lau.edu.lb
+                    </a>
+                  </div>
+                </div>
               </div>
-            </details>
+
+              <p class="contact-note">
+                Students, faculty, and staff can contact the lab team for
+                support with visits, equipment access, workshops, and creative
+                projects.
+              </p>
+            </div>
           </div>
         </div>
       </section>
@@ -1189,40 +1085,6 @@
           }
         });
       });
-
-      function openPolicyFromHash() {
-        const hash = window.location.hash;
-
-        if (!hash) return;
-
-        const targetPolicy = document.querySelector(hash);
-
-        if (targetPolicy && targetPolicy.tagName.toLowerCase() === "details") {
-          document
-            .querySelectorAll(".cs-accordion details")
-            .forEach((details) => {
-              details.removeAttribute("open");
-            });
-
-          targetPolicy.setAttribute("open", "open");
-
-          setTimeout(() => {
-            const headerOffset = 95;
-            const targetPosition =
-              targetPolicy.getBoundingClientRect().top +
-              window.pageYOffset -
-              headerOffset;
-
-            window.scrollTo({
-              top: targetPosition,
-              behavior: "smooth",
-            });
-          }, 150);
-        }
-      }
-
-      window.addEventListener("load", openPolicyFromHash);
-      window.addEventListener("hashchange", openPolicyFromHash);
     </script>
   </body>
 </html>

@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Policies - LAU Creative Space Lab</title>
+    <title>Equipment - LAU Creative Space Lab</title>
 
     <!-- Fonts and Icons -->
     <link
@@ -360,61 +360,188 @@
         font-family: "Playfair Display", serif;
       }
 
-      /* Original Accordion Style */
-      .cs-accordion details {
-        background: white;
-        border: 1px solid #e2e8f0;
-        border-radius: 12px;
-        margin-bottom: 1rem;
+      /* LIBCAL EQUIPMENT SLIDER - SAME AS INDEX */
+      .libcal-slider {
+        width: 100%;
+        overflow: hidden;
+        margin-top: 2rem;
+        position: relative;
+      }
+
+      .libcal-slider::before,
+      .libcal-slider::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        width: 90px;
+        height: 100%;
+        z-index: 3;
+        pointer-events: none;
+      }
+
+      .libcal-slider::before {
+        left: 0;
+        background: linear-gradient(to right, #f8f9fa, transparent);
+      }
+
+      .libcal-slider::after {
+        right: 0;
+        background: linear-gradient(to left, #f8f9fa, transparent);
+      }
+
+      .libcal-track {
+        display: flex;
+        width: max-content;
+        animation: equipmentScroll 35s linear infinite;
+        will-change: transform;
+      }
+
+      .libcal-track-reverse {
+        animation-direction: reverse;
+      }
+
+      .libcal-slider:hover .libcal-track {
+        animation-play-state: paused;
+      }
+
+      .libcal-group {
+        display: flex;
+        gap: 1.5rem;
+        padding-right: 1.5rem;
+      }
+
+      .libcal-group .libcal-card {
+        flex: 0 0 260px;
+      }
+
+      @keyframes equipmentScroll {
+        from {
+          transform: translateX(0);
+        }
+
+        to {
+          transform: translateX(-33.3333%);
+        }
+      }
+
+      @media (max-width: 700px) {
+        .libcal-group .libcal-card {
+          flex-basis: 230px;
+        }
+
+        .libcal-track {
+          animation-duration: 25s;
+        }
+      }
+
+      .libcal-card {
+        background: #fff;
+        border-radius: 8px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+        display: flex;
+        flex-direction: column;
+        overflow: hidden;
+        border: 1px solid #eaeaea;
         transition: var(--transition);
       }
 
-      .cs-accordion details[open] {
-        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
-        border-color: var(--primary-light);
+      .libcal-card:hover {
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+        transform: translateY(-3px);
       }
 
-      .cs-accordion summary {
-        padding: 1.2rem;
-        font-weight: 600;
-        cursor: pointer;
-        list-style: none;
+      .libcal-img-container {
+        height: 220px;
+        padding: 1.5rem;
         display: flex;
-        justify-content: space-between;
         align-items: center;
-        color: var(--primary-dark);
+        justify-content: center;
+        background: #ffffff;
+        border-bottom: 1px solid #f5f5f5;
       }
 
-      .cs-accordion summary::-webkit-details-marker {
-        display: none;
+      .libcal-img-link {
+        display: block;
+        text-decoration: none;
+        color: inherit;
+        cursor: pointer;
       }
 
-      .cs-accordion summary::after {
-        content: "\f078";
-        font-family: "Font Awesome 6 Free";
-        transition: transform 0.3s;
+      .libcal-img-link:hover .libcal-img-container img {
+        transform: scale(1.03);
+      }
+
+      .libcal-img-container img {
+        transition: transform 0.3s ease;
+      }
+
+      .libcal-img-container img {
+        max-width: 100%;
+        max-height: 100%;
+        object-fit: contain;
+      }
+
+      .libcal-img-bg-gray {
+        background: #fdfdfd;
+        padding: 1rem;
+      }
+
+      .libcal-img-bg-gray img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        border-radius: 4px;
+      }
+
+      .libcal-title {
+        font-size: 1.05rem;
+        font-weight: 700;
+        padding: 1.2rem 1.2rem 1.5rem 1.2rem;
+        flex-grow: 1;
+        color: var(--text-dark);
+        letter-spacing: -0.01em;
+      }
+
+      .libcal-footer {
+        display: flex;
+        align-items: center;
+        gap: 0.4rem;
+        padding: 0.6rem 1rem 1rem;
+        background: #fff;
+      }
+
+      .libcal-action {
+        flex: 1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
         color: var(--primary-color);
+        font-size: 0.9rem;
+        font-weight: 600;
+        text-decoration: none;
+        transition: var(--transition);
+        text-align: left;
+        line-height: 1.15;
+        padding: 0.4rem 0.25rem;
+        border-radius: 8px;
       }
 
-      .cs-accordion details[open] summary::after {
-        transform: rotate(180deg);
-      }
-
-      .cs-accordion .details-content {
-        padding: 0 1.2rem 1.2rem;
-        font-size: 0.95rem;
-        color: var(--text-light);
-        border-top: 1px solid #f1f5f9;
-        margin-top: 0.5rem;
-        padding-top: 1rem;
-      }
-
-      .details-content h4 {
+      .libcal-action:hover {
+        background: rgba(0, 103, 81, 0.08);
         color: var(--primary-dark);
+        text-decoration: none;
       }
 
-      .details-content ul {
-        color: var(--text-light);
+      .libcal-action i {
+        font-size: 1.1rem;
+        color: var(--primary-color);
+        transition: var(--transition);
+      }
+
+      .libcal-divider {
+        width: 1px;
+        background: #e2e2e2;
       }
 
       /* Minimal Footer */
@@ -733,6 +860,10 @@
         .cs-hero {
           min-height: 48vh;
         }
+
+        .libcal-card {
+          border-radius: 14px;
+        }
       }
     </style>
   </head>
@@ -743,7 +874,7 @@
          ========================================== -->
     <header id="main-header">
       <nav>
-          <a href="../index.html" class="logo">
+        <a href="../index.html" class="logo">
           <img src="images/LAU Libraries Logo.png" alt="LAU Logo" />
           <span class="logo-text">Libraries</span>
         </a>
@@ -778,9 +909,9 @@
           </li>
 
           <li class="nav-item">
-            <a href="policies.html"
-              >Policies <i class="fas fa-chevron-down"></i
-            ></a>
+            <a href="policies.html">
+              Policies <i class="fas fa-chevron-down"></i>
+            </a>
             <div class="dropdown">
               <a href="policies.html#student-policies">Student Policies</a>
               <a href="policies.html#staff-policies">Faculty Policies</a>
@@ -841,254 +972,369 @@
       </div>
 
       <!-- ==========================================
-           LAB POLICIES
+           BOOKABLE EQUIPMENT
            ========================================== -->
-      <section id="policies" class="cs-section cs-bg-light">
+      <section id="equipment" class="cs-section cs-bg-light">
         <div class="cs-container">
-          <h2 class="cs-section-title">Lab Policies</h2>
-          <p
-            style="
-              color: var(--text-light);
-              margin-bottom: 2rem;
-              font-size: 1.1rem;
-            "
-          >
-            Please review our guidelines to ensure a productive and safe
-            creative environment for everyone.
+          <h2 class="cs-section-title" style="margin-bottom: 0.5rem">
+            Bookable Equipment
+          </h2>
+          <p style="color: var(--text-light); font-size: 1.1rem">
+            Browse our inventory of technical and creative machinery. Click
+            availability to reserve items via our LibCal system.
           </p>
 
-          <div class="cs-accordion">
-            <details id="staff-policies">
-              <summary>🎓 Faculty Guidelines</summary>
-              <div class="details-content">
-                <h4 style="margin-bottom: 0.5rem">General Guidelines</h4>
-                <ul style="margin-left: 1.5rem; margin-bottom: 1.5rem">
-                  <li>
-                    The Creative Space is dedicated to creative projects,
-                    research, and fabrication.
-                  </li>
-                  <li>
-                    Faculty walk-ins are welcome for individual creative work,
-                    prototyping, and exploration.
-                  </li>
-                  <li>
-                    Faculty use of equipment requires prior reservation;
-                    walk-ins may use the equipment only if no other reservation
-                    is scheduled.
-                  </li>
-                  <li>
-                    Students have priority in this space – thus, if a faculty
-                    and student walk-in at the same time, the student will have
-                    priority to use available equipment.
-                  </li>
-                  <li>
-                    Specialized equipment may require a brief orientation before
-                    independent use.
-                  </li>
-                  <li>
-                    Faculty should meet with the Creative Space Supervisor to
-                    log on to their visit upon arrival.
-                  </li>
-                  <li>No food; drinks allowed only in closed containers.</li>
-                </ul>
+          <h3
+            style="
+              font-family: &quot;Inter&quot;, sans-serif;
+              font-size: 1.3rem;
+              margin-top: 3rem;
+              color: #333;
+              border-bottom: 2px solid var(--primary-light);
+              padding-bottom: 0.5rem;
+              display: inline-block;
+            "
+          >
+            Creative Space Machinery
+          </h3>
 
-                <h4 style="margin-bottom: 0.5rem">1. Reservation Procedure</h4>
-                <ul style="margin-left: 1.5rem; margin-bottom: 1.5rem">
-                  <li>
-                    Faculty may reserve: Equipment and/or computers for personal
-                    research or project work OR The entire space for workshops
-                    or class sessions.
-                  </li>
-                  <li>
-                    Reservations for the entire space must be made at least two
-                    weeks prior to the desired date.
-                  </li>
-                  <li>
-                    Contact the Creative Space supervisor to reserve the entire
-                    space.
-                  </li>
-                </ul>
-
-                <h4 style="margin-bottom: 0.5rem">2. General Conduct</h4>
-                <ul style="margin-left: 1.5rem; margin-bottom: 1.5rem">
-                  <li>Respect the space and other users.</li>
-                  <li>Clean your area before leaving.</li>
-                  <li>Return tools and chairs to their original place.</li>
-                  <li>Report issues immediately to the supervisor.</li>
-                  <li>
-                    Keep cables and materials organized to prevent tripping or
-                    damage.
-                  </li>
-                </ul>
-
-                <h4 style="margin-bottom: 0.5rem">3. 3D Printing Guidelines</h4>
-                <ul style="margin-left: 1.5rem; margin-bottom: 1.5rem">
-                  <li>All 3D print work requires booking prior to work.</li>
-                  <li>
-                    Individuals seeking to perform 3D printing must first pass
-                    through a training session with the Creative Space
-                    Supervisor.
-                  </li>
-                  <li>
-                    All 3D prints must be cleared through the Creative Space
-                    supervisor before printing begins.
-                  </li>
-                  <li>
-                    All materials must be purchased through the creative space
-                    or approved for use by the creative space supervisor.
-                  </li>
-                </ul>
-
-                <h4 style="margin-bottom: 0.5rem">4. 3D Scanning Guidelines</h4>
-                <ul style="margin-left: 1.5rem; margin-bottom: 1.5rem">
-                  <li>All 3d scanning requires prior booking.</li>
-                  <li>
-                    Individuals seeking to perform 3D scanning must first pass
-                    through a training session with the Creative Space
-                    Supervisor.
-                  </li>
-                </ul>
-
-                <h4 style="margin-bottom: 0.5rem">5. Workstations</h4>
-                <ul style="margin-left: 1.5rem; margin-bottom: 1.5rem">
-                  <li>
-                    Workstations require booking; advance booking is recommended
-                    but may also be done on arrival if there are free
-                    workstations.
-                  </li>
-                  <li>Use headphones for audio tasks.</li>
-                </ul>
-
-                <h4 style="margin-bottom: 0.5rem">
-                  6. Embroidery and Sewing Machine Guidelines
-                </h4>
-                <ul style="margin-left: 1.5rem; margin-bottom: 1.5rem">
-                  <li>
-                    All embroidery and/or sewing machine work requires prior to
-                    booking.
-                  </li>
-                  <li>
-                    Individuals seeking to use the embroidery and/or sewing
-                    machines must first pass through a training session with the
-                    Creative Space Supervisor.
-                  </li>
-                  <li>Long sleeves must be secure, rolled, or fitted.</li>
-                  <li>Keep hair tied back to prevent personal harm.</li>
-                  <li>Report broken or missing tools immediately.</li>
-                </ul>
+          <div class="libcal-slider">
+            <div class="libcal-track">
+              <div class="libcal-card">
+                <a
+                  href="https://lau.libcal.com/equipment/item/217667"
+                  class="libcal-img-link"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <div class="libcal-img-container libcal-img-bg-gray">
+                    <img src="images/3D Scanner.jpg" alt="3D Scanner" />
+                  </div>
+                </a>
+                <div class="libcal-title">3D Scanner</div>
+                <div class="libcal-footer">
+                  <a
+                    href="https://lau.libcal.com/equipment/item/217667"
+                    class="libcal-action"
+                    target="_blank"
+                  >
+                    <i class="fa-regular fa-clock"></i>
+                    <span>Availability</span>
+                  </a>
+                  <div class="libcal-divider"></div>
+                  <a
+                    href="https://lau.libcal.com/equipment/item/217667"
+                    class="libcal-action"
+                    target="_blank"
+                  >
+                    <i class="fa-solid fa-list-ul"></i>
+                    <span>More<br />details</span>
+                  </a>
+                </div>
               </div>
-            </details>
 
-            <details id="student-policies">
-              <summary>🎓 Student Guidelines</summary>
-              <div class="details-content">
-                <p style="font-weight: 600; margin-bottom: 1rem">
-                  The Creative Space is not a space for general study – it is a
-                  space for active, creative pursuits!
-                </p>
-
-                <h4 style="margin-bottom: 0.5rem">1. Not Allowed in the Lab</h4>
-                <ul style="margin-left: 1.5rem; margin-bottom: 1.5rem">
-                  <li>No studying or unrelated homework.</li>
-                  <li>No group study sessions.</li>
-                  <li>No sitting without purpose.</li>
-                  <li>No food.</li>
-                  <li>Drinks are allowed only in closed containers.</li>
-                </ul>
-
-                <h4 style="margin-bottom: 0.5rem">
-                  2. General, Creative Consultation
-                </h4>
-                <ul style="margin-left: 1.5rem; margin-bottom: 1.5rem">
-                  <li>
-                    Individuals are encouraged to book a creative consultation
-                    with the lab supervisor before booking time on any machine
-                    or beginning work in the space.
-                  </li>
-                </ul>
-
-                <h4 style="margin-bottom: 0.5rem">3. 3D Printing Guidelines</h4>
-                <ul style="margin-left: 1.5rem; margin-bottom: 1.5rem">
-                  <li>All 3D print work requires booking prior to work.</li>
-                  <li>
-                    Individuals seeking to perform 3D printing must first pass
-                    through a training session with the Creative Space
-                    Supervisor.
-                  </li>
-                  <li>
-                    All 3D prints must be cleared through the Creative Space
-                    supervisor before printing begins.
-                  </li>
-                  <li>
-                    All materials must be purchased through the creative space
-                    or approved for use by the creative space supervisor.
-                  </li>
-                </ul>
-
-                <h4 style="margin-bottom: 0.5rem">4. 3D Scanning Guidelines</h4>
-                <ul style="margin-left: 1.5rem; margin-bottom: 1.5rem">
-                  <li>All 3D scanning is required prior to booking.</li>
-                  <li>
-                    Individuals seeking to perform 3D scanning must first pass
-                    through a training session with the Creative Space
-                    Supervisor.
-                  </li>
-                </ul>
-
-                <h4 style="margin-bottom: 0.5rem">5. Workstations</h4>
-                <ul style="margin-left: 1.5rem; margin-bottom: 1.5rem">
-                  <li>
-                    Workstations require booking; advance booking is recommended
-                    but may also be done on arrival if there are free
-                    workstations.
-                  </li>
-                  <li>Use headphones for audio tasks.</li>
-                </ul>
-
-                <h4 style="margin-bottom: 0.5rem">
-                  6. Embroidery and Sewing Machine Guidelines
-                </h4>
-                <ul style="margin-left: 1.5rem; margin-bottom: 1.5rem">
-                  <li>
-                    All embroidery and/or sewing machine work requires booking
-                    prior to work.
-                  </li>
-                  <li>
-                    Individuals seeking to use the embroidery and/or sewing
-                    machines must first pass through a training session with the
-                    Creative Space Supervisor.
-                  </li>
-                  <li>Long sleeves must be secure, rolled, or fitted.</li>
-                  <li>Keep hair tied back to prevent personal harm.</li>
-                  <li>Report broken or missing tools immediately.</li>
-                </ul>
-
-                <h4 style="margin-bottom: 0.5rem">7. General Conduct</h4>
-                <ul style="margin-left: 1.5rem; margin-bottom: 1.5rem">
-                  <li>Respect the space and other users.</li>
-                  <li>Clean your area before leaving.</li>
-                  <li>Return tools and chairs to their original place.</li>
-                  <li>Report issues immediately to the supervisor.</li>
-                  <li>
-                    Keep cables and materials organized to prevent tripping or
-                    damage.
-                  </li>
-                </ul>
-
-                <h4 style="margin-bottom: 0.5rem">8. Walk-in Policy</h4>
-                <ul style="margin-left: 1.5rem; margin-bottom: 1.5rem">
-                  <li>
-                    Walk-ins are welcome but must be actively working on a
-                    creative endeavor.
-                  </li>
-                  <li>
-                    Walk-ins may use the equipment in the space provided there
-                    is no existing booking for the equipment, and they are
-                    trained in its use.
-                  </li>
-                </ul>
+              <div class="libcal-card">
+                <a
+                  href="https://lau.libcal.com/equipment/item/227614"
+                  class="libcal-img-link"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <div class="libcal-img-container">
+                    <img
+                      src="images/Rize 2XC.jpg"
+                      style="padding: 10px"
+                      alt="Rize 2XC"
+                    />
+                  </div>
+                </a>
+                <div class="libcal-title">Rize 2XC</div>
+                <div class="libcal-footer">
+                  <a
+                    href="https://lau.libcal.com/equipment/item/227614"
+                    class="libcal-action"
+                    target="_blank"
+                  >
+                    <i class="fa-regular fa-clock"></i>
+                    <span>Availability</span>
+                  </a>
+                  <div class="libcal-divider"></div>
+                  <a
+                    href="https://lau.libcal.com/equipment/item/227614"
+                    class="libcal-action"
+                    target="_blank"
+                  >
+                    <i class="fa-solid fa-list-ul"></i>
+                    <span>More<br />details</span>
+                  </a>
+                </div>
               </div>
-            </details>
+
+              <div class="libcal-card">
+                <a
+                  href="https://lau.libcal.com/equipment/item/227613"
+                  class="libcal-img-link"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <div class="libcal-img-container">
+                    <img
+                      src="images/Ultimaker S5.png"
+                      style="padding: 10px"
+                      alt="Ultimaker S5"
+                    />
+                  </div>
+                </a>
+                <div class="libcal-title">Ultimaker S5</div>
+                <div class="libcal-footer">
+                  <a
+                    href="https://lau.libcal.com/equipment/item/227613"
+                    class="libcal-action"
+                    target="_blank"
+                  >
+                    <i class="fa-regular fa-clock"></i>
+                    <span>Availability</span>
+                  </a>
+                  <div class="libcal-divider"></div>
+                  <a
+                    href="https://lau.libcal.com/equipment/item/227613"
+                    class="libcal-action"
+                    target="_blank"
+                  >
+                    <i class="fa-solid fa-list-ul"></i>
+                    <span>More<br />details</span>
+                  </a>
+                </div>
+              </div>
+
+              <div class="libcal-card">
+                <a
+                  href="https://lau.libcal.com/equipment/item/217676"
+                  class="libcal-img-link"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <div class="libcal-img-container">
+                    <img
+                      src="images/Seweing Machine.jpg"
+                      style="padding: 10px"
+                      alt="Sewing Machine"
+                    />
+                  </div>
+                </a>
+                <div class="libcal-title">Sewing Machine</div>
+                <div class="libcal-footer">
+                  <a
+                    href="https://lau.libcal.com/equipment/item/217676"
+                    class="libcal-action"
+                    target="_blank"
+                  >
+                    <i class="fa-regular fa-clock"></i>
+                    <span>Availability</span>
+                  </a>
+                  <div class="libcal-divider"></div>
+                  <a
+                    href="https://lau.libcal.com/equipment/item/217676"
+                    class="libcal-action"
+                    target="_blank"
+                  >
+                    <i class="fa-solid fa-list-ul"></i>
+                    <span>More<br />details</span>
+                  </a>
+                </div>
+              </div>
+
+              <div class="libcal-card">
+                <a
+                  href="https://lau.libcal.com/equipment/item/217675"
+                  class="libcal-img-link"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <div class="libcal-img-container">
+                    <img
+                      src="images/Embroidery Machine.jpg"
+                      style="padding: 10px"
+                      alt="Embroidery Machine"
+                    />
+                  </div>
+                </a>
+                <div class="libcal-title">Embroidery Machine</div>
+                <div class="libcal-footer">
+                  <a
+                    href="https://lau.libcal.com/equipment/item/217675"
+                    class="libcal-action"
+                    target="_blank"
+                  >
+                    <i class="fa-regular fa-clock"></i>
+                    <span>Availability</span>
+                  </a>
+                  <div class="libcal-divider"></div>
+                  <a
+                    href="https://lau.libcal.com/equipment/item/217675"
+                    class="libcal-action"
+                    target="_blank"
+                  >
+                    <i class="fa-solid fa-list-ul"></i>
+                    <span>More<br />details</span>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <h3
+            style="
+              font-family: &quot;Inter&quot;, sans-serif;
+              font-size: 1.3rem;
+              margin-top: 4rem;
+              color: #333;
+              border-bottom: 2px solid var(--primary-light);
+              padding-bottom: 0.5rem;
+              display: inline-block;
+            "
+          >
+            Media & Tech Equipment
+          </h3>
+
+          <div class="libcal-slider">
+            <div class="libcal-track libcal-track-reverse">
+              <div class="libcal-card">
+                <a
+                  href="https://lau.libcal.com/equipment/item/217664"
+                  class="libcal-img-link"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <div class="libcal-img-container">
+                    <img src="images/65inch TV.jpg" alt="65 inch TV" />
+                  </div>
+                </a>
+                <div class="libcal-title">65&quot; TV</div>
+                <div class="libcal-footer">
+                  <a
+                    href="https://lau.libcal.com/equipment/item/217664"
+                    class="libcal-action"
+                    target="_blank"
+                  >
+                    <i class="fa-regular fa-clock"></i>
+                    <span>Availability</span>
+                  </a>
+                  <div class="libcal-divider"></div>
+                  <a
+                    href="https://lau.libcal.com/equipment/item/217664"
+                    class="libcal-action"
+                    target="_blank"
+                  >
+                    <i class="fa-solid fa-list-ul"></i>
+                    <span>More<br />details</span>
+                  </a>
+                </div>
+              </div>
+
+              <div class="libcal-card">
+                <a
+                  href="https://lau.libcal.com/equipment/item/227126"
+                  class="libcal-img-link"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <div class="libcal-img-container">
+                    <img
+                      src="images/CSL_Lap1001.png"
+                      style="padding: 10px"
+                      alt="Dell Laptop"
+                    />
+                  </div>
+                </a>
+                <div class="libcal-title">CSL_Lap1001</div>
+                <div class="libcal-footer">
+                  <a
+                    href="https://lau.libcal.com/equipment/item/227126"
+                    class="libcal-action"
+                    target="_blank"
+                  >
+                    <i class="fa-regular fa-clock"></i>
+                    <span>Availability</span>
+                  </a>
+                  <div class="libcal-divider"></div>
+                  <a
+                    href="https://lau.libcal.com/equipment/item/227126"
+                    class="libcal-action"
+                    target="_blank"
+                  >
+                    <i class="fa-solid fa-list-ul"></i>
+                    <span>More<br />details</span>
+                  </a>
+                </div>
+              </div>
+
+              <div class="libcal-card">
+                <a
+                  href="https://lau.libcal.com/equipment/item/227429"
+                  class="libcal-img-link"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <div class="libcal-img-container">
+                    <img src="images/Mobile TV.jpg" alt="Mobile TV" />
+                  </div>
+                </a>
+                <div class="libcal-title">Mobile TV</div>
+                <div class="libcal-footer">
+                  <a
+                    href="https://lau.libcal.com/equipment/item/227429"
+                    class="libcal-action"
+                    target="_blank"
+                  >
+                    <i class="fa-regular fa-clock"></i>
+                    <span>Availability</span>
+                  </a>
+                  <div class="libcal-divider"></div>
+                  <a
+                    href="https://lau.libcal.com/equipment/item/227429"
+                    class="libcal-action"
+                    target="_blank"
+                  >
+                    <i class="fa-solid fa-list-ul"></i>
+                    <span>More<br />details</span>
+                  </a>
+                </div>
+              </div>
+
+              <div class="libcal-card">
+                <a
+                  href="https://lau.libcal.com/equipment/item/217663"
+                  class="libcal-img-link"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <div class="libcal-img-container">
+                    <img src="images/Projector.jpg" alt="Projector" />
+                  </div>
+                </a>
+                <div class="libcal-title">Projector</div>
+                <div class="libcal-footer">
+                  <a
+                    href="https://lau.libcal.com/equipment/item/217663"
+                    class="libcal-action"
+                    target="_blank"
+                  >
+                    <i class="fa-regular fa-clock"></i>
+                    <span>Availability</span>
+                  </a>
+                  <div class="libcal-divider"></div>
+                  <a
+                    href="https://lau.libcal.com/equipment/item/217663"
+                    class="libcal-action"
+                    target="_blank"
+                  >
+                    <i class="fa-solid fa-list-ul"></i>
+                    <span>More<br />details</span>
+                  </a>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </section>
@@ -1140,11 +1386,37 @@
       </div>
     </footer>
 
+    <!-- SAME EQUIPMENT SLIDER LOGIC AS INDEX -->
+    <script>
+      document.querySelectorAll(".libcal-track").forEach((track) => {
+        const originalCards = Array.from(track.children).filter((child) =>
+          child.classList.contains("libcal-card"),
+        );
+
+        if (!originalCards.length) return;
+
+        const group = document.createElement("div");
+        group.className = "libcal-group";
+
+        originalCards.forEach((card) => {
+          group.appendChild(card);
+        });
+
+        track.appendChild(group);
+
+        for (let i = 0; i < 2; i++) {
+          const clone = group.cloneNode(true);
+          clone.setAttribute("aria-hidden", "true");
+          track.appendChild(clone);
+        }
+      });
+    </script>
+
+    <!-- MOBILE NAVIGATION -->
     <script>
       const navToggle = document.getElementById("navToggle");
       const navLinks = document.getElementById("navLinks");
       const navOverlay = document.getElementById("navOverlay");
-      const navItems = document.querySelectorAll(".nav-item");
 
       function closeMenu() {
         navToggle.classList.remove("open");
@@ -1153,76 +1425,59 @@
         document.body.classList.remove("menu-open");
         navToggle.setAttribute("aria-expanded", "false");
 
-        navItems.forEach((item) => {
-          item.classList.remove("open");
-        });
+        document
+          .querySelectorAll(".nav-item.open, .nav-subitem.open")
+          .forEach((item) => {
+            item.classList.remove("open");
+          });
+      }
+
+      function openMenu() {
+        navToggle.classList.add("open");
+        navLinks.classList.add("open");
+        navOverlay.classList.add("show");
+        document.body.classList.add("menu-open");
+        navToggle.setAttribute("aria-expanded", "true");
       }
 
       navToggle.addEventListener("click", () => {
-        const isOpen = navLinks.classList.toggle("open");
-
-        navToggle.classList.toggle("open", isOpen);
-        navOverlay.classList.toggle("show", isOpen);
-        document.body.classList.toggle("menu-open", isOpen);
-        navToggle.setAttribute("aria-expanded", isOpen ? "true" : "false");
+        if (navLinks.classList.contains("open")) {
+          closeMenu();
+        } else {
+          openMenu();
+        }
       });
 
       navOverlay.addEventListener("click", closeMenu);
 
-      navItems.forEach((item) => {
-        const link = item.querySelector(":scope > a");
-        const dropdown = item.querySelector(":scope > .dropdown");
-
-        if (!dropdown) return;
-
+      document.querySelectorAll(".nav-item > a").forEach((link) => {
         link.addEventListener("click", (event) => {
-          if (window.innerWidth <= 900) {
+          const parentItem = link.closest(".nav-item");
+          const dropdown = parentItem.querySelector(":scope > .dropdown");
+
+          if (window.innerWidth <= 900 && dropdown) {
             event.preventDefault();
 
-            navItems.forEach((otherItem) => {
-              if (otherItem !== item) {
-                otherItem.classList.remove("open");
+            document.querySelectorAll(".nav-item.open").forEach((item) => {
+              if (item !== parentItem) {
+                item.classList.remove("open");
               }
             });
 
-            item.classList.toggle("open");
+            parentItem.classList.toggle("open");
+          } else if (window.innerWidth <= 900) {
+            closeMenu();
           }
         });
       });
 
-      function openPolicyFromHash() {
-        const hash = window.location.hash;
-
-        if (!hash) return;
-
-        const targetPolicy = document.querySelector(hash);
-
-        if (targetPolicy && targetPolicy.tagName.toLowerCase() === "details") {
-          document
-            .querySelectorAll(".cs-accordion details")
-            .forEach((details) => {
-              details.removeAttribute("open");
-            });
-
-          targetPolicy.setAttribute("open", "open");
-
-          setTimeout(() => {
-            const headerOffset = 95;
-            const targetPosition =
-              targetPolicy.getBoundingClientRect().top +
-              window.pageYOffset -
-              headerOffset;
-
-            window.scrollTo({
-              top: targetPosition,
-              behavior: "smooth",
-            });
-          }, 150);
-        }
-      }
-
-      window.addEventListener("load", openPolicyFromHash);
-      window.addEventListener("hashchange", openPolicyFromHash);
+      document.querySelectorAll(".dropdown a").forEach((link) => {
+        link.addEventListener("click", () => {
+          if (window.innerWidth <= 900) {
+            closeMenu();
+          }
+        });
+      });
     </script>
   </body>
 </html>
