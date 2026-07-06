@@ -158,6 +158,16 @@
             min-width: 300px;
         }
 
+        /* Mobile hamburger button - hidden on desktop, shown only under 768px */
+        .mobile-menu-toggle {
+            display: none;
+        }
+
+        /* Accordion arrow buttons (top-level sections) - hidden on desktop, shown only under 768px */
+        .mobile-dropdown-toggle {
+            display: none;
+        }
+
 
 /* Hero Section */
         .hero {
@@ -660,80 +670,247 @@
         @media (max-width: 768px) {
             nav {
                 padding: 1rem;
+                position: relative;
             }
-            
+
             .nav-links {
                 display: none;
             }
-        
+
             .mobile-menu-toggle {
-                display: block;
+                display: flex;
+                align-items: center;
+                justify-content: center;
                 background: none;
                 border: none;
-                font-size: 1.5rem;
+                font-size: 1.4rem;
                 cursor: pointer;
-                color: var(--text-dark);
+                color: #006751;
                 z-index: 1001;
+                padding: 0.25rem 0.5rem;
             }
-            
+
             .nav-links.mobile-open {
                 display: flex;
                 flex-direction: column;
-                position: fixed;
-                top: 0;
+                position: absolute;
+                top: 100%;
                 left: 0;
                 right: 0;
-                bottom: 0;
-                background: var(--white);
-                padding: 5rem 2rem 2rem;
+                background: #ffffff;
+                padding: 0.5rem 1.25rem 1.5rem;
+                max-height: calc(100vh - 80px);
                 overflow-y: auto;
-                z-index: 1000;
+                z-index: 1001;
+                box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+                border-top: 1px solid rgba(0, 0, 0, 0.06);
             }
-            
+
+            /* Top-level sections: Finding Materials / Using the Library / Getting Support / Visit Us / About */
             .nav-links.mobile-open .nav-item {
-                margin-bottom: 1rem;
+                margin-bottom: 0.15rem;
+                width: 100%;
+                border-bottom: 1px solid #eee;
             }
-            
-            .nav-links.mobile-open .dropdown {
+
+            .nav-links.mobile-open .nav-item:last-of-type {
+                border-bottom: none;
+            }
+
+            .nav-links.mobile-open .mobile-row {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                width: 100%;
+            }
+
+            .nav-links.mobile-open .nav-item > a {
+                flex: 1;
+                font-weight: 600;
+                padding: 0.7rem 0.25rem;
+            }
+
+            .nav-links.mobile-open .nav-item > a::after {
+                display: none;
+            }
+
+            /* Arrow toggle button for each top-level section */
+            .nav-links.mobile-open .mobile-dropdown-toggle {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                width: 2.2rem;
+                height: 2.2rem;
+                flex-shrink: 0;
+                background: none;
+                border: none;
+                color: #006751;
+                font-size: 0.9rem;
+                cursor: pointer;
+            }
+
+            .nav-links.mobile-open .mobile-dropdown-toggle i {
+                transition: transform 0.25s ease;
+            }
+
+            .nav-links.mobile-open .nav-item.mobile-expanded > .mobile-row .mobile-dropdown-toggle i {
+                transform: rotate(180deg);
+            }
+
+            /* Dropdown / mega-menu: collapsed by default, shown only when its section is expanded */
+            .nav-links.mobile-open .dropdown,
+            .nav-links.mobile-open .mega-menu {
+                display: none;
                 position: static;
                 opacity: 1;
                 visibility: visible;
                 transform: none;
                 box-shadow: none;
-                background: var(--light-gray);
-                margin: 0.5rem 0;
-                border-radius: var(--border-radius-sm);
+                background: #f8f9fa;
+                margin: 0 0 0.6rem;
+                padding: 0.75rem 1rem;
+                border-radius: 8px;
+                width: 100%;
+                max-width: 100%;
             }
-            
+
+            .nav-links.mobile-open .nav-item.mobile-expanded > .dropdown,
+            .nav-links.mobile-open .nav-item.mobile-expanded > .mega-menu {
+                display: block;
+            }
+
+            .nav-links.mobile-open .mega-grid {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+
+            .nav-links.mobile-open .mega-col {
+                padding-left: 0;
+            }
+
+            .nav-links.mobile-open .mega-col:not(:first-child)::before {
+                display: none;
+            }
+
+            .nav-links.mobile-open .mega-col:not(:first-child) {
+                border-top: 1px solid #e7e7e7;
+                padding-top: 0.75rem;
+                margin-top: 0.5rem;
+            }
+
+            /* Nested submenus (Suggest a Purchase, Group Study Rooms): collapsed until tapped */
+            .nav-links.mobile-open .submenu {
+                display: block;
+            }
+
+            .nav-links.mobile-open .submenu-title {
+                cursor: pointer;
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+            }
+
+            .nav-links.mobile-open .submenu-dropdown {
+                position: static;
+                display: none;
+                opacity: 1;
+                visibility: visible;
+                transform: none;
+                box-shadow: none;
+                background: transparent;
+                padding: 0 0 0 1rem;
+            }
+
+            .nav-links.mobile-open .submenu.mobile-expanded .submenu-dropdown {
+                display: block;
+            }
+
+            /* My Account: removed from beside the hamburger, shown at the top of the menu instead */
+            .nav-links.mobile-open .mobile-account-item {
+                border-bottom: 1px solid #eee;
+                padding-bottom: 0.5rem;
+                margin-bottom: 0.4rem;
+            }
+
+            .nav-links.mobile-open .mobile-account-item .my-account-btn {
+                display: flex;
+                width: 100%;
+                justify-content: center;
+                padding: 0.6rem 1rem;
+                font-weight: 600;
+            }
+
+            /* On-page section summary/TOC box isn't practical on mobile - hide it entirely */
+            .page-toc {
+                display: none !important;
+            }
+
+            .page-shell.with-toc {
+                grid-template-columns: 1fr !important;
+            }
+
             .hero {
                 padding: 140px 1rem 80px;
             }
-            
+
             .hero h1 {
                 font-size: 2.2rem;
             }
-            
+
             .search-box {
                 flex-direction: column;
-                border-radius: var(--border-radius);
+                border-radius: 12px;
             }
-            
+
             .search-box input,
             .search-box button {
                 width: 100%;
                 padding: 1rem;
             }
-            
+
             .section-title {
                 font-size: 2rem;
             }
-            
+
             .services-grid {
                 grid-template-columns: 1fr;
             }
-            
+
             .hours-grid {
                 grid-template-columns: 1fr;
+            }
+
+            /* Footer: compact, aligned on fewer lines on mobile */
+            footer {
+                padding: 2.25rem 1.25rem 1.25rem;
+            }
+
+            .footer-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 1.5rem 1rem;
+                margin-bottom: 1.5rem;
+            }
+
+            .footer-section h4 {
+                font-size: 0.95rem;
+                margin-bottom: 0.6rem;
+            }
+
+            .footer-links {
+                gap: 0.45rem;
+            }
+
+            .footer-links a {
+                font-size: 0.8rem;
+            }
+
+            .copyright {
+                padding-top: 1.1rem;
+                font-size: 0.75rem;
+            }
+
+            .copyright p:last-child {
+                margin-top: 0.3rem !important;
             }
         }
    
@@ -1273,6 +1450,55 @@
         table.lib-table { width: 100%; border-collapse: collapse; margin: 1rem 0; font-size: 0.92rem; }
         table.lib-table th, table.lib-table td { text-align: left; padding: 0.65rem 0.9rem; border-bottom: 1px solid #eee; }
         table.lib-table th { background: #f6faf9; color: #006751; font-weight: 700; }
+        @media (max-width: 600px) {
+            table.lib-table { border: none; }
+            table.lib-table tr:first-child { display: none; }
+            table.lib-table tr {
+                display: block;
+                background: #fff;
+                border: 1px solid #e7f3f0;
+                border-radius: 12px;
+                padding: 0.9rem 1rem;
+                margin-bottom: 0.9rem;
+                box-shadow: 0 4px 14px rgba(0,0,0,0.05);
+            }
+            table.lib-table td {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                gap: 0.8rem;
+                padding: 0.6rem 0.1rem;
+                border-bottom: 1px dashed #eee;
+                font-size: 0.95rem;
+                text-align: right;
+            }
+            table.lib-table td:last-child { border-bottom: none; }
+            table.lib-table td::before {
+                content: attr(data-label);
+                font-weight: 700;
+                color: #006751;
+                text-align: left;
+                margin-right: 1rem;
+            }
+            table.lib-table td:first-child {
+                display: block;
+                font-weight: 700;
+                color: #006751;
+                font-size: 1.05rem;
+                text-align: left;
+                border-bottom: 2px solid #e7f3f0;
+                padding-bottom: 0.7rem;
+                margin-bottom: 0.4rem;
+            }
+            table.lib-table td:first-child::before { content: none; }
+            table.lib-table td[colspan] {
+                display: block;
+                text-align: left;
+                font-weight: 600;
+                color: #333;
+            }
+            table.lib-table td[colspan]::before { content: none; }
+        }
         .note-box { background: #fff8e6; border-left: 4px solid #e6b800; border-radius: 10px; padding: 0.9rem 1.2rem; margin: 1rem 0; font-size: 0.92rem; color: #6b5a00; }
         .related-pages { margin-top: 2.5rem; }
         .related-pages h4 { font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.05em; color: #888; margin-bottom: 0.9rem; }
@@ -1309,6 +1535,10 @@
     <img src="https://online.lau.edu.lb/wp-content/uploads/2021/04/LAU-logo-green.png" alt="LAU Logo">
     <span class="logo-text">Libraries</span>
   </a>
+
+  <button type="button" class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="navLinks">
+    <i class="fas fa-bars"></i>
+  </button>
 
   <ul class="nav-links" id="navLinks">
 
@@ -1348,7 +1578,7 @@
         <div class="mega-title">Technology</div>
         <a href="computers-equipment.html">Computers &amp; Equipment</a>
         <a href="print-scan-copy.html">Print/Scan/Copy</a>
-        <a href="creative-space.html">Creative Space Access</a>
+        <a href="Creative Space Website Prototype\index.html">Creative Space Access</a>
       </div>
 
       <div class="mega-col">
@@ -1400,7 +1630,7 @@
         <a href="hours.html">Hours</a>
         <div class="submenu"><span class="submenu-title">Group Study Rooms &#9656;</span><div class="submenu-dropdown"><a href="http://lau.libcal.com/rooms.php?i=1566">Riyad Nassar Library</a><a href="https://lau.libcal.com/rooms.php?i=16531">Joseph G. Jabbra Library</a></div></div>
         <a href="https://libraries.lau.edu.lb/services/writing-center.php">Writing &amp; Communication Center</a>
-        <a href="creative-spaces.html">Creative Spaces</a>
+        <a href="Creative Space Website Prototype\index.html">Creative Spaces</a>
       </div>
     </li>
 
@@ -1532,5 +1762,129 @@ function toggleMobileMenu() {
     document.getElementById('navLinks').classList.toggle('mobile-open');
 }
 </script>
+
+    <script>
+        // Mobile navigation: hamburger + accordion sections + relocated "My Account"
+        (function () {
+            var toggleBtn = document.getElementById('mobileMenuToggle');
+            var navLinks = document.getElementById('navLinks');
+            var navEl = document.querySelector('header nav');
+            if (!toggleBtn || !navLinks || !navEl) return;
+
+            // ---- Hamburger open/close ----
+            function setMenuOpen(isOpen) {
+                navLinks.classList.toggle('mobile-open', isOpen);
+                toggleBtn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+                var icon = toggleBtn.querySelector('i');
+                if (icon) {
+                    icon.classList.toggle('fa-bars', !isOpen);
+                    icon.classList.toggle('fa-xmark', isOpen);
+                }
+                if (!isOpen) {
+                    navLinks.querySelectorAll('.mobile-expanded').forEach(function (el) {
+                        el.classList.remove('mobile-expanded');
+                    });
+                    navLinks.querySelectorAll('.mobile-dropdown-toggle').forEach(function (btn) {
+                        btn.setAttribute('aria-expanded', 'false');
+                    });
+                }
+            }
+
+            toggleBtn.addEventListener('click', function (e) {
+                e.stopPropagation();
+                setMenuOpen(!navLinks.classList.contains('mobile-open'));
+            });
+
+            // ---- Accordion: top-level sections (Finding Materials, Using the Library, etc.) ----
+            navLinks.querySelectorAll(':scope > .nav-item').forEach(function (item) {
+                var panel = item.querySelector(':scope > .dropdown, :scope > .mega-menu');
+                var link = item.querySelector(':scope > a');
+                if (!panel || !link) return;
+
+                var row = document.createElement('div');
+                row.className = 'mobile-row';
+
+                var arrowBtn = document.createElement('button');
+                arrowBtn.type = 'button';
+                arrowBtn.className = 'mobile-dropdown-toggle';
+                arrowBtn.setAttribute('aria-label', 'Show ' + link.textContent.trim() + ' submenu');
+                arrowBtn.setAttribute('aria-expanded', 'false');
+                arrowBtn.innerHTML = '<i class="fas fa-chevron-down"></i>';
+
+                item.insertBefore(row, link);
+                row.appendChild(link);
+                row.appendChild(arrowBtn);
+
+                arrowBtn.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    var isOpen = item.classList.toggle('mobile-expanded');
+                    arrowBtn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+                });
+            });
+
+            // ---- Nested accordion: "Suggest a Purchase", "Group Study Rooms", etc. ----
+            navLinks.querySelectorAll('.submenu').forEach(function (submenu) {
+                var title = submenu.querySelector(':scope > .submenu-title');
+                if (!title) return;
+                title.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    submenu.classList.toggle('mobile-expanded');
+                });
+            });
+
+            // ---- Close the menu after tapping an actual link (not an arrow/toggle) ----
+            navLinks.addEventListener('click', function (e) {
+                if (e.target.tagName === 'A') {
+                    setMenuOpen(false);
+                }
+            });
+
+            // ---- Close when tapping outside the menu ----
+            document.addEventListener('click', function (e) {
+                if (navLinks.classList.contains('mobile-open') &&
+                    !navLinks.contains(e.target) &&
+                    e.target !== toggleBtn &&
+                    !toggleBtn.contains(e.target)) {
+                    setMenuOpen(false);
+                }
+            });
+
+            // ---- Move "My Account" into the top of the mobile menu, restore it on desktop ----
+            var acct = navEl.querySelector(':scope > .my-account-btn');
+            if (acct) {
+                var acctAnchor = document.createElement('span');
+                acctAnchor.style.display = 'none';
+                acct.parentNode.insertBefore(acctAnchor, acct);
+
+                var acctItem = document.createElement('li');
+                acctItem.className = 'nav-item mobile-account-item';
+
+                function placeAccountForViewport() {
+                    if (window.innerWidth <= 768) {
+                        if (acct.parentNode !== acctItem) {
+                            acctItem.appendChild(acct);
+                        }
+                        if (navLinks.firstChild !== acctItem) {
+                            navLinks.insertBefore(acctItem, navLinks.firstChild);
+                        }
+                    } else if (acct.parentNode !== acctAnchor.parentNode) {
+                        acctAnchor.parentNode.insertBefore(acct, acctAnchor.nextSibling);
+                    }
+                }
+
+                placeAccountForViewport();
+                window.addEventListener('resize', placeAccountForViewport);
+            }
+
+            // ---- Reset everything if the window is resized back to desktop ----
+            window.addEventListener('resize', function () {
+                if (window.innerWidth > 768) {
+                    setMenuOpen(false);
+                }
+            });
+        })();
+    </script>
 </body>
 </html>
