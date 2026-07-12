@@ -1002,7 +1002,8 @@
   left: 50%;
   top: 100%;
   transform: translateX(-50%);
-  width: min(1000px, 88vw);
+  width: max-content;
+  max-width: min(1000px, 88vw);
 
   background: #fff;
   padding: 32px 48px;
@@ -1016,8 +1017,10 @@
 }
 
 /* Show on hover */
-.nav-item.has-mega:hover .mega-menu {
-  display: block;
+@media (min-width: 769px) {
+  .nav-item.has-mega:hover .mega-menu {
+    display: block;
+  }
 }
 
 /* Columns */
@@ -1025,6 +1028,15 @@
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 60px;
+}
+
+.mega-grid.cols-2{
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.mega-grid.cols-4{
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 40px;
 }
 
 .mega-col{
@@ -1617,7 +1629,7 @@ header {
 
     
     <li class="nav-item">
-      <a href="https://librarycatalog.lau.edu.lb/">Finding Materials</a>
+      <a href="https://librarycatalog.lau.edu.lb/"> Finding Materials</a>
       <div class="dropdown">
         <a href="https://librarycatalog.lau.edu.lb/">Library Search</a>
         <a href="https://libguides.lau.edu.lb/az/databases?preview=cca4debe741d5531920779e9c5d30184">Online Databases</a>
@@ -1629,17 +1641,17 @@ header {
 
 
   <li class="nav-item has-mega">
-  <a href="borrow-renew.html">Using the Library</a>
+  <a href="borrow-renew.html"> Using the Library</a>
 
   <div class="mega-menu">
-    <div class="mega-grid">
+    <div class="mega-grid cols-4">
 
       <div class="mega-col">
         <div class="mega-title">Access &amp; Borrowing</div>
         <a href="borrow-renew.html">Borrow &amp; Renew</a>
         <a href="off-campus.html">Off-campus Access of Electronic Materials</a>
         <a href="ill-dd.html">Interlibrary Loan/Document Delivery</a>
-        <div class="submenu"><span class="submenu-title">Suggest a Purchase &#9656;</span><div class="submenu-dropdown">
+        <div class="submenu"><span class="submenu-title">Suggest a Purchase ▸</span><div class="submenu-dropdown">
           <a href="https://librarycatalog.lau.edu.lb/discovery/purchaseRequest?vid=961LAU_INST%3AVU1">Purchase Request</a>
           <a href="https://forms.office.com/r/VP0peAeuCE">Faculty Publication</a>
         </div></div>
@@ -1648,10 +1660,17 @@ header {
       </div>
 
       <div class="mega-col">
+        <div class="mega-title">Learning Support</div>
+        <a href="course-support.html">Course Support for Instructors</a>
+        <a href="https://libraries.lau.edu.lb/services/writing-center.php">Writing &amp; Communication Center</a>
+        <div class="submenu"><span class="submenu-title">Group Study Rooms ▸</span><div class="submenu-dropdown"><a href="http://lau.libcal.com/rooms.php?i=1566">Riyad Nassar Library</a><a href="https://lau.libcal.com/rooms.php?i=16531">Joseph G. Jabbra Library</a></div></div>
+      </div>
+
+      <div class="mega-col">
         <div class="mega-title">Technology</div>
         <a href="computers-equipment.html">Computers &amp; Equipment</a>
         <a href="print-scan-copy.html">Print/Scan/Copy</a>
-        <a href="Creative Space Website Prototype\index.html">Creative Space Access</a>
+        <a href="Creative Space Website Prototype/index.html">Creative Space Access</a>
       </div>
 
       <div class="mega-col">
@@ -1664,10 +1683,10 @@ header {
 </li>
   
  <li class="nav-item has-mega">
-  <a href="thesis-support.html">Getting Support</a>
+  <a href="thesis-support.html"> Getting Support</a>
 
   <div class="mega-menu">
-    <div class="mega-grid">
+    <div class="mega-grid cols-2">
 
       <div class="mega-col">
         <div class="mega-title">Research Basics</div>
@@ -1682,34 +1701,34 @@ header {
         <div class="mega-title">Research Services</div>
         <a href="consultations.html">Research Consultations and Tutorials</a>
         <a href="data-analysis.html">Data Analysis and Visualization</a>
-        <a href="https://lau.libcal.com/calendar?cid=21473">Information Literacy Sessions</a>
+        <a href="https://lau.libcal.com/api_events.php?m=upc&cid=21473&audience=&c=&d=80083-80235-80233-80242-80234&tags=&l=50&tar=0&simple=agenda">Information Literacy Sessions</a>
       </div>
 
-      <div class="mega-col">
+      <!-- <div class="mega-col">
         <div class="mega-title">More Support</div>
         <a href="https://libraries.lau.edu.lb/services/writing-center.php">Writing &amp; Communication Center</a>
         <a href="course-support.html">Course Support for Instructors</a>
         <a href="chat-librarian.html">Chat with a Librarian</a>
-      </div>
+      </div> -->
 
     </div>
   </div>
 </li>
    
     <li class="nav-item">
-      <a href="locations.html">Visit Us</a>
+      <a href="locations.html"> Visit Us</a>
       <div class="dropdown dropdown-visitus">
         <a href="locations.html">Locations</a>
         <a href="hours.html">Hours</a>
-        <div class="submenu"><span class="submenu-title">Group Study Rooms &#9656;</span><div class="submenu-dropdown"><a href="http://lau.libcal.com/rooms.php?i=1566">Riyad Nassar Library</a><a href="https://lau.libcal.com/rooms.php?i=16531">Joseph G. Jabbra Library</a></div></div>
+        <!-- <div class="submenu"><span class="submenu-title">Group Study Rooms ▸</span><div class="submenu-dropdown"><a href="http://lau.libcal.com/rooms.php?i=1566">Riyad Nassar Library</a><a href="https://lau.libcal.com/rooms.php?i=16531">Joseph G. Jabbra Library</a></div></div>
         <a href="https://libraries.lau.edu.lb/services/writing-center.php">Writing &amp; Communication Center</a>
-        <a href="Creative Space Website Prototype\index.html">Creative Spaces</a>
-      </div>
+        <a href="Creative Space Website Prototype/index.html">Creative Spaces</a>
+      </div> -->
     </li>
 
    
     <li class="nav-item">
-      <a href="history.html">About</a>
+      <a href="history.html"> About</a>
       <div class="dropdown dropdown-about">
         <a href="history.html">Our History</a>
         <a href="staff-admin.html">Staff &amp; Administration</a>
